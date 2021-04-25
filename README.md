@@ -9,7 +9,7 @@ In this project our goal is to combine multiple data sets that show which states
 
 ## EXAMPLES OF MAP IDEAS
 
-A clear representation of the data could work using (https://observablehq.com/@d3/hexbin-map) for [Hex examnple]("https://github.com/Soup-or-Salad/Project_NBA/blob/main/Images/Hex.png). But this nytimes interactive chart could be very engaging and MAYBE after some looking into it a combination of the two.
+A clear representation of the data could work using [hex example](https://raw.githubusercontent.com/Soup-or-Salad/Project_NBA/main/Images/Interactive_blob.png). But this nytimes interactive chart could be very engaging and MAYBE after some looking into it a combination of the two.
 (https://archive.nytimes.com/www.nytimes.com/interactive/2013/05/25/sunday-review/corporate-taxes.html) for [Interactive example]("Images/Interactive_blob.png")
 
 ## DEPLOYMENT
