@@ -1,7 +1,7 @@
 # WHERE DO STARS COME FROM?
 By Derell Jenkins, Kelvin Walls, and Eric Nietzer
 
-![Images/Stars.png]("https://raw.githubusercontent.com/Soup-or-Salad/Project_NBA/main/Images/Stars-1.png)
+![https://raw.githubusercontent.com/Soup-or-Salad/Project_NBA/main/Images/Stars-1.png]("Images/Stars-1.png")
 
 Do certain states produce more and bigger NBA stars? Is basketball played differently in different areas of the country, and if so do different skill sets define what a star player is?
 
