@@ -14,7 +14,7 @@ from flask import Flask, jsonify
 # Setup Database
 ##########################################################
 
-engine = create_engine("location to DB")
+engine = create_engine("placeholder DB")
 
 # reflect an existing database into a new model
 Base = automap_base()
