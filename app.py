@@ -8,13 +8,23 @@ from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify
 
+# Import pgadmin password from python file
+from nbapw import pw
 
+#################################################
+# Create Database Connection
+#################################################
+engine = create_engine(f'postgresql://postgres:{pw}@localhost:5432/project_nba')
+#engine = create_engine(f'postgresql://{connection_string}')
 
+<<<<<<< Updated upstream
 ##########################################################
 # Setup Database
 ##########################################################
 
 engine = create_engine("placeholder DB")
+=======
+>>>>>>> Stashed changes
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -39,7 +49,7 @@ app = Flask(__name__)
 # 3. Define the route
 @app.route("/")
 def home():
-    print("Server received request for 'home' page...)
+    print("Server received request for 'home' page...")
     return "Welcome to my 'Home' page! This is where I will introduce my website or project"
 
 @app.route("/about")
