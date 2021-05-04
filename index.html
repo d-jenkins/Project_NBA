@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Star Constellation</title>
+    <link rel="icon" href="./Images/nbalogo.jpg" type="image/icon type">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+
+</head>
+
+<body class="body">
+
+    <div id="mySidenav" class="sidenav">
+        <a href="./players.html" id="players">Players</a>
+        <a href="./index.html" id="state">Hometown</a>
+        <a href="./Skill.html" id="skill">Skill</a>
+        <a href="./about.html" id="about">About</a>
+        <a href="./intro.html" id="home">Home</a>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <h1><span style="color:rgb(255, 208, 0)"></span>Hometowns </h1>
+
+                <p class="text">With this chart, you can observe the weakness and/or strength of a players skill compared to another. If you click on one of the skillsets, certain lines will light up linking to other powers that the selected is commonly battled against.
+                    The three colors of the lines have significance:</p>
+                <li>If the path is YELLOW</li>
+                <li>If the path is BLUE</li>
+                <li>If the path is PURPLE</li>
+            </div>
+        </div>
+    </div>
+
+    <div id="typeChart">
+        <div id="graph"></div>
+    </div>
+    <button class="button reset" onclick="reset()">RESET</button>
+    <script>
+        // Create cluster layout
+        // give [360, innerRadius] to size
+        // it will form a radial cluster
+
+        var diameter = 750,
+            radius = diameter / 2,
+            innerRadius = radius - 120;
+
+
+
+        var cluster = d3.cluster()
+            .size([360, innerRadius]);
+
+        var line = d3.svg.line.radial()
+            .interpolate("bundle")
+            .tension(0.75)
+            .radius(function(d) {
+                return d.y;
+            })
+            .angle(function(d) {
+                return d.x / 180 * Math.PI;
+            });
+
+        window.colorPath = function(d, l, type) {
+            var type = type || 'strong';
+            if (type == 'strong') {
+                if (l.target === d) return l.source.target = true;
+            }
+            if (type == 'weak') {
+                for (type in d) {
+                    if (type !== "size") {
+                        if (l.target === d[type]) return l.source.target = true;
+                    }
+                }
+            }
+        }
+    </script>
+    <script src=".js"></script>
+    <footer class="footer">
+        <span class=""> © 2020 Kelvin Walls Derell Jenkins and Eric Nietzer</span>
+    </footer>
+</body>
+
+</html>
