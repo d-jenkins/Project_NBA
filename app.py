@@ -22,6 +22,26 @@ mongo = PyMongo(app)
 def home():
     return render_template("index.html")
 
+@app.route("/intro.html")
+def intro():
+    return render_template("intro.html")
+
+@app.route("/players.html")
+def players():
+    return render_template("players.html")
+
+@app.route("/index.html")
+def hometown():
+    return render_template("index.html")
+
+@app.route("/Skill.html")
+def skill():
+    return render_template("Skill.html")
+
+@app.route("/about.html")
+def about():
+    return render_template("about.html")
+
 @app.route('/ballers')
 def get_ballers():
   data = []
