@@ -9,7 +9,7 @@ In this project our goal is to combine multiple data sets that show which states
 
 ## INTERACTIVE MAP
 
-Using D3.js and Leaflet we created an interactive map ![hex example](https://raw.githubusercontent.com/Soup-or-Salad/Project_NBA/main/Images/Hex.png)
+Using D3.js and Leaflet we created an interactive map ![Map.png](https://raw.githubusercontent.com/Soup-or-Salad/Project_NBA/main/Images/Map.png)
 We've also created a graph and chart using D3 to show where players are from and their skillsets.
 ![Blob](https://raw.githubusercontent.com/Soup-or-Salad/Project_NBA/main/Images/Interactive_blob.png) 
 
