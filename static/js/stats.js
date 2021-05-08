@@ -1,50 +1,51 @@
-d3.csv("usa_ballers.csv")
-                                .then(d => chart(d))
+function getPlayers() {
+    const url = "/players";
+    d3.json(url).then(d => chart(d))
 
-                            function chart(csv) {
-                                var keys = ['TRB', 'AST', 'STL', 'BLK', 'PTS', 'TOV']
-                                let ballers = [...new Set(csv.map(d => d.name))]
-                                var options = d3.select("#ballers").selectAll("option")
-                                    .data(ballers)
-                                    .enter().append("option")
-                                    .text(d => d)
+        function chart(csv) {
+        var keys = ['TRB', 'AST', 'STL', 'BLK', 'PTS', 'TOV']
+        let ballers = [...new Set(csv.map(d => d.name))]
+        var options = d3.select("#ballers").selectAll("option")
+        .data(ballers)
+        .enter().append("option")
+        .text(d => d)
 
-                                var svg = d3.select("#chart"),
-                                    margin = {top: 25, bottom: 0, left: 25, right: 25},
-                                    width = +svg.attr("width") - margin.left - margin.right,
-                                    height = +svg.attr("height") - margin.top - margin.bottom;
+        var svg = d3.select("#chart"),
+        margin = {top: 25, bottom: 0, left: 25, right: 25},
+        width = +svg.attr("width") - margin.left - margin.right,
+        height = +svg.attr("height") - margin.top - margin.bottom;
 
-                                var x = d3.scaleBand()
-                                    .range([0, width])
-                                    .padding(0.4);
+        var x = d3.scaleBand()
+            .range([0, width])
+            .padding(0.4);
                                     
-                                var y = d3.scaleLinear()
-                                    .range([height - margin.bottom, margin.top])
+        var y = d3.scaleLinear()
+            .range([height - margin.bottom, margin.top])
 
-                                var xAxis = d3.axisBottom(x).tickSizeOuter(0)
-                                var yAxis = d3.axisLeft(y)
+        var xAxis = d3.axisBottom(x).tickSizeOuter(0)
+        var yAxis = d3.axisLeft(y)
 
-                                svg.append("g")
-                                    .attr("Pos", "x-axis")
-                                    .attr("transform", `translate(0,${height - margin.bottom})`)
-                                    .call(xAxis);
-                                svg.append("g")
-                                    .attr("Pos","y-axis")
-                                    .attr("transform", `translate(${margin.left},0)`)
-                                    .call(yAxis);
+        svg.append("g")
+            .attr("Pos", "x-axis")
+            .attr("transform", `translate(0,${height - margin.bottom})`)
+            .call(xAxis);
+        svg.append("g")
+            .attr("Pos","y-axis")
+            .attr("transform", `translate(${margin.left},0)`)
+            .call(yAxis);
                                 
-                                update(d3.select("#ballers").property("value"), 0)
+        update(d3.select("#ballers").property("value"), 0)
 
-                                function update(input, PTS) {
-                                    let rawData = csv.filter(f => f.name == input)[0]
-                                    let data = []
-                                    for(let i = 0; i < keys.length; i++){
-                                        let obj = {
-                                            "attribute": keys[i],
-                                            "value": Number(rawData[keys[i]])
-                                        }
-                                        data.push(obj)
-                                    }
+            function update(input, PTS) {
+                let rawData = csv.filter(f => f.name == input)[0]
+                let data = []
+                for(let i = 0; i < keys.length; i++){
+                    let obj = {
+                        "attribute": keys[i],
+                        "value": Number(rawData[keys[i]])
+                        }
+                        data.push(obj)
+                        }
 
                                     y.domain([0, d3.max(data, d => d.value) + 5]).nice()
                                     svg.selectAll(".y-axis").transition().duration(PTS)
@@ -119,3 +120,5 @@ d3.csv("usa_ballers.csv")
                                         })
 
                             }
+
+                        }

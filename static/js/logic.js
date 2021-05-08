@@ -24,15 +24,18 @@ var tooltip = d3.select("#tooltip")
 var chartGroup = svg.append("g")
     .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
-d3.csv("./usa_ballers.csv").then((nbaPlayers) => {
-    console.log(nbaPlayers);
+function getPlayers() {
+    const url = "/players";
+    d3.json(url).then((nbaPlayers) => {
+        console.log(nbaPlayers);
 
-    nbaPlayers.forEach((data) => {
-        parseFloat(data.name);
-        //data.ppg = +data.ppg;
-        //data.apg = +data.apg;
-        data.PTS = +data.PTS;
-    });
+        nbaPlayers.forEach((data) => {
+            parseFloat(data.name);
+            //data.ppg = +data.ppg;
+            //data.apg = +data.apg;
+            data.PTS = +data.PTS;
+        });
+  
 
     var xBandScale = d3.scaleBand()
         .domain(nbaPlayers.map(data => data.name))
@@ -81,3 +84,4 @@ d3.csv("./usa_ballers.csv").then((nbaPlayers) => {
 }).catch(function(error) {
     console.log(error)
 });
+}
