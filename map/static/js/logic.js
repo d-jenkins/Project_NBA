@@ -1,4 +1,14 @@
-var stat = "PTS";
+var pts = d3.select(".pts")
+
+var stat = "AST";
+
+pts.on("click", function() {
+  stat = "AST";
+  console.log("meow")
+
+});
+
+
 
 // Creating map object
 var map = L.map("map", {
@@ -7,7 +17,7 @@ var map = L.map("map", {
 });
 
 // Adding tile layer
-L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
   tileSize: 512,
   maxZoom: 10,
@@ -97,6 +107,15 @@ d3.json("../json/states.geojson").then(function (data) {
     geojson = L.geoJson(states, {
       style: style,
       onEachFeature: onEachFeature
+    }).addTo(map);
+
+    var overlayMaps = {
+      PTS: geojson,
+      AST: geojson
+    };
+
+    L.control.layers(darkmap, overlayMaps, {
+      collapsed: false
     }).addTo(map);
 
 

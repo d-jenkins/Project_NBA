@@ -4,6 +4,14 @@
   <meta charset="utf-8">
   <title>Geo JSON</title>
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -16,9 +24,20 @@
   <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 
+
+
 <body>
+
+  <!-- <input class="btn btn-primary" type="button" value="PTS" class="pts">
+  <input class="btn btn-primary" type="submit" value="ORB" class="orb">
+  <input class="btn btn-primary" type="reset" value="DRB" class="drb"> -->
+
+  <div id="dataviz_builtWithD3"></div>
+
   <!-- The div where we will inject our map -->
   <div id="map"></div>
+
+
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
@@ -28,7 +47,7 @@
   <!-- API key -->
   <script type="text/javascript" src="static/js/config.js"></script>
   <!-- Our JS -->
-  <script src="static/js/logic.js"></script>
+  <script src="static/logic.js"></script>
 </body>
 </html>
 
