@@ -9,7 +9,7 @@ In this project our goal is to combine multiple data sets that show which states
 
 ## EXAMPLES OF MAP IDEAS
 
-A clear representation of the data could work using ![map.png](https://github.com/Soup-or-Salad/Project_NBA/kelvin-branch2/map/index.html)
+A clear representation of the data could work using ![Map.png](https://raw.githubusercontent.com/Soup-or-Salad/Project_NBA/main/Images/Map.png)
 But this nytimes interactive chart could be very engaging and MAYBE after some looking into it a combination of the two.
 ![Blob](https://raw.githubusercontent.com/Soup-or-Salad/Project_NBA/main/Images/Interactive_blob.png) 
 
