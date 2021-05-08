@@ -1,4 +1,4 @@
-var stat = "Age";
+var stat = "PTS";
 
 // Creating map object
 var map = L.map("map", {
@@ -10,7 +10,7 @@ var map = L.map("map", {
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
   tileSize: 512,
-  maxZoom: 18,
+  maxZoom: 10,
   zoomOffset: -1,
   id: "mapbox/dark-v9",
   accessToken: API_KEY
@@ -38,7 +38,7 @@ d3.json("../json/states.geojson").then(function (data) {
 
 
     colorScale = d3.scaleLinear()
-      .domain(d3.extent(state.map(s => s.Age)))
+      .domain(d3.extent(state.map(s => s[stat])))
       .range(['blue', 'red']);
 
     opacityScale = d3.scaleLinear()
@@ -51,7 +51,7 @@ d3.json("../json/states.geojson").then(function (data) {
         opacity: 1,
         color: 'white',
         fillOpacity: opacityScale(state.filter(s => s.State == feature.properties.name)[0].Baller_Counts),
-        fillColor: colorScale(state.filter(s => s.State == feature.properties.name)[0].Age)
+        fillColor: colorScale(state.filter(s => s.State == feature.properties.name)[0][stat])
       };
     }
 
@@ -80,18 +80,18 @@ d3.json("../json/states.geojson").then(function (data) {
       info.update();
     }
 
-    function zoomToFeature(e) {
-      map.fitBounds(e.target.getBounds());
-    }
+    // function zoomToFeature(e) {
+    //   map.fitBounds(e.target.getBounds());
+    // }
 
     function onEachFeature(feature, layer) {
       trueState = state.filter(s => s.State == feature.properties.name)[0]
       layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-        click: zoomToFeature
+        // click: zoomToFeature
       });
-      layer.bindPopup(String(trueState.State) + "<hr>Average age: " + String(trueState[stat]) + "<br>Rank in age: " + String(trueState[`Rank_in_${stat}`]) + "<br>%ile in age: " + String(trueState[`Percentile_in_${stat}`]));
+      layer.bindPopup(String(trueState.State) + "<hr>Average " + stat + ": " + String(trueState[stat]) + "<br>Rank in " + stat + ": " + String(trueState[`Rank_in_${stat}`]) + "<br>%ile in " + stat + ": " + String(trueState[`Percentile_in_${stat}`]));
     }
 
     geojson = L.geoJson(states, {
