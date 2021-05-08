@@ -44,13 +44,34 @@ def about():
 
 @app.route('/ballers')
 def get_ballers():
-  data = []
+  ballers = []
   usaB = mongo.db.nbaPlayers.find({}, {"_id": 0})
   for b in usaB:
-       data.append(b)
+       ballers.append(b)
        print(b)
   # del ballers['_id']
-  return jsonify({"status": "success", "payload": data})
+  return jsonify({"status": "success", "payload": ballers})
+
+
+@app.route('/states')
+def get_states():
+  states = []
+  usaStates = mongo.db.states.find({}, {"_id": 0})
+  for s in usaStates:
+       states.append(s)
+       print(s)
+  # del ballers['_id']
+  return jsonify({"status": "success", "payload": states})
+
+@app.route('/cities')
+def get_cities():
+  city = []
+  usaCity = mongo.db.city.find({}, {"_id": 0})
+  for c in usaCity:
+       city.append(c)
+       print(c)
+  # del ballers['_id']
+  return jsonify({"status": "success", "payload": city})
 
 if __name__ == "__main__":
     app.run(debug=True)
