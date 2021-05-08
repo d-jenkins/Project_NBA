@@ -9,7 +9,7 @@ In this project our goal is to combine multiple data sets that show which states
 
 ## EXAMPLES OF MAP IDEAS
 
-A clear representation of the data could work using ![Map.png](https://raw.githubusercontent.com/Soup-or-Salad/Project_NBA/main/Images/Map.png)
+Our interactive map that shows  ![Map.png](https://raw.githubusercontent.com/Soup-or-Salad/Project_NBA/main/Images/Map.png)
 Also, an interactive bar graph and chart to show different stats and skillsets of NBA players.
 ![Blob](https://raw.githubusercontent.com/Soup-or-Salad/Project_NBA/main/Images/Interactive_blob.png) 
 
