@@ -1,9 +1,9 @@
-var queryUrl = "static/js/states.geojson";
+var stat = "Age";
 
 // Creating map object
 var map = L.map("map", {
   center: [37.8, -96],
-  zoom: 5.4
+  zoom: 5.3
 });
 
 // Adding tile layer
@@ -20,18 +20,40 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 hoopStates = []
 states = []
 
-d3.json(queryUrl).then(function (data) {
+d3.json("../json/states.geojson").then(function (data) {
 
 
-  d3.csv("../csv/state_df.csv").then(function (states) {
-    states.forEach(s => hoopStates.push(s.State))
-    
+  d3.json("../json/state_df.json").then(function (state) {
+
+    console.log(state)
+
+    state.forEach(s => hoopStates.push(s.State))
+
 
     data.features.forEach(s => {
       if (hoopStates.includes(s.properties.name) == true) {
         states.push(s)
-      } 
+      }
     })
+
+
+    colorScale = d3.scaleLinear()
+      .domain(d3.extent(state.map(s => s.Age)))
+      .range(['blue', 'red']);
+
+    opacityScale = d3.scaleLinear()
+      .domain(d3.extent(state.map(s => s.Baller_Counts)))
+      .range([0.3, 1]);
+
+    function style(feature) {
+      return {
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        fillOpacity: opacityScale(state.filter(s => s.State == feature.properties.name)[0].Baller_Counts),
+        fillColor: colorScale(state.filter(s => s.State == feature.properties.name)[0].Age)
+      };
+    }
 
 
     function highlightFeature(e) {
@@ -63,14 +85,17 @@ d3.json(queryUrl).then(function (data) {
     }
 
     function onEachFeature(feature, layer) {
+      trueState = state.filter(s => s.State == feature.properties.name)[0]
       layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
         click: zoomToFeature
       });
+      layer.bindPopup(String(trueState.State) + "<hr>Average age: " + String(trueState[stat]) + "<br>Rank in age: " + String(trueState[`Rank_in_${stat}`]) + "<br>%ile in age: " + String(trueState[`Percentile_in_${stat}`]));
     }
 
     geojson = L.geoJson(states, {
+      style: style,
       onEachFeature: onEachFeature
     }).addTo(map);
 
