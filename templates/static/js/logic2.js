@@ -1,6 +1,8 @@
+const url = "/states";
+
 d3.json("../json/states.geojson").then(function (data) {
 
-  d3.json("../json/state_df.json").then(function (state) {
+  d3.json(url).then(function (state) {
 
     stat = "Age"
 
