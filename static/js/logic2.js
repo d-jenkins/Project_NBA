@@ -1,4 +1,4 @@
-const url = "/states";
+const url = "/states/api";
 
 d3.json("../json/states.geojson").then(function (data) {
 

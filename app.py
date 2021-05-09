@@ -38,7 +38,7 @@ def hometown():
 def skill():
     return render_template("Skill.html")
 
-@app.route("/about.html")
+@app.route("/states")
 def about():
     return render_template("states.html")
 
@@ -53,14 +53,14 @@ def get_players():
   return jsonify({"status": "success", "payload": players})
 
 
-@app.route('/states')
+@app.route('/states/api')
 def get_states():
   states = []
   usaStates = mongo.db.states.find({}, {"_id": 0})
   for s in usaStates:
        states.append(s)
        print(s)
-  # del ballers['_id']
+      # del ballers['_id']
   return jsonify({"status": "success", "payload": states})
 
 @app.route('/cities')
