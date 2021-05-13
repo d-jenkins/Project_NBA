@@ -23,10 +23,14 @@ function buildMap() {
     hoopStates = []
     states = []
 
-    d3.json("../json/states.geojson").then(function (data) {
+    const url = "/players";
 
 
-      d3.json("../json/state_df.json").then(function (state) {
+    d3.json(url).then(function (data) {
+      console.log(data)
+
+
+      d3.json(url).then(function (state) {
 
         console.log(state)
 

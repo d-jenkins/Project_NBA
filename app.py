@@ -48,7 +48,7 @@ def skill():
 def about():
     return render_template("about.html")
 
-@app.route('/players')
+@app.route('/players', methods = ['Get'])
 def get_player():
   players = []
   usaP = mongo.db.nbaPlayers.find({}, {"_id": 0})
