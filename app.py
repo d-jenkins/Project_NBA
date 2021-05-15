@@ -18,7 +18,7 @@ mongo = PyMongo(app)
 ##########################################################
 
 # 3. Define the route
-@app.route("/")
+@app.route("/", methods = ['Get'])
 def get_players():
   players = []
   usaP = mongo.db.nbaPlayers.find({}, {"_id": 0})
